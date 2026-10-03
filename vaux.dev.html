@@ -1,0 +1,300 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>vaux.dev</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: single-column dev portfolio, sticky top bar, hero, then four labelled sections (about, projects, skills, contact). */
+:root{
+  --bg:#f2f4f7; --surface:#ffffff; --fg:#13171f; --muted:#5a6473; --line:#d9dee6; --accent:#2540e8; --accent-fg:#ffffff; --tag:#e7ebf5;
+  --f-display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0d1117; --surface:#151b24; --fg:#e8ecf2; --muted:#93a0b2; --line:#263040; --accent:#8da2ff; --accent-fg:#0d1117; --tag:#1d2635; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0d1117; --surface:#151b24; --fg:#e8ecf2; --muted:#93a0b2; --line:#263040; --accent:#8da2ff; --accent-fg:#0d1117; --tag:#1d2635; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+body{background:var(--bg);color:var(--fg);font:400 1rem/1.65 var(--f-body);padding-inline:max(1rem,env(safe-area-inset-left,0px));padding-block:0;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.wrap{max-width:62rem;margin-inline:auto}
+.mono{font-family:var(--f-mono)}
+
+header.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:calc(50% - 50vw);padding-inline:max(1rem,calc(50vw - 31rem))}
+.bar-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:3.5rem}
+.logo{font:500 .95rem var(--f-mono);text-decoration:none;letter-spacing:.01em}
+.logo span{color:var(--accent)}
+nav{display:flex;align-items:center;gap:1.25rem}
+nav a{font:400 .8rem var(--f-mono);text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--fg)}
+#theme{font:400 .75rem var(--f-mono);background:none;color:var(--muted);border:1px solid var(--line);border-radius:.4rem;padding:.3rem .6rem;cursor:pointer}
+#theme:hover{color:var(--fg);border-color:var(--muted)}
+@media (max-width:34rem){nav a{display:none}}
+
+.hero{padding-block:clamp(3rem,9vw,6.5rem) clamp(2.5rem,6vw,4.5rem)}
+.hello{font:400 .9rem var(--f-mono);color:var(--accent);margin:0 0 .75rem}
+h1{font:700 clamp(2.6rem,9vw,5.6rem)/1 var(--f-display);letter-spacing:-.03em;margin:0;text-wrap:balance}
+.role{font:500 clamp(1.15rem,3vw,1.7rem)/1.3 var(--f-display);color:var(--muted);margin:1rem 0 0;max-width:34rem;text-wrap:balance}
+.lede{max-width:40rem;margin:1.5rem 0 0;color:var(--fg)}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.btn{display:inline-flex;align-items:center;font:500 .85rem var(--f-mono);padding:.7rem 1.1rem;border-radius:.45rem;text-decoration:none;border:1px solid var(--line);color:var(--fg);background:var(--surface)}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.primary:hover{color:var(--accent-fg);filter:brightness(1.08)}
+
+section{padding-block:clamp(2.5rem,6vw,4.5rem);border-top:1px solid var(--line)}
+.label{font:400 .85rem var(--f-mono);color:var(--accent);margin:0 0 .4rem}
+h2{font:700 clamp(1.8rem,4.5vw,2.6rem)/1.1 var(--f-display);letter-spacing:-.02em;margin:0 0 2rem}
+
+.about{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:2.5rem;align-items:start}
+.about p{margin:0 0 1rem;max-width:38rem}
+.now{background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:1.1rem 1.25rem;font:400 .85rem/1.9 var(--f-mono)}
+.now .c{color:var(--muted);display:block;margin-bottom:.35rem}
+.now dl{margin:0;display:grid;grid-template-columns:auto 1fr;column-gap:.9rem}
+.now dt{color:var(--accent)}
+.now dd{margin:0;min-width:0}
+@media (max-width:48rem){.about{grid-template-columns:minmax(0,1fr)}}
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:1.35rem;display:flex;flex-direction:column;gap:.9rem;min-width:0}
+.card.featured{grid-column:1/-1;border-color:var(--accent)}
+.card h3{font:700 1.25rem/1.25 var(--f-display);letter-spacing:-.01em;margin:0}
+.card.featured h3{font-size:1.5rem}
+.badge{align-self:flex-start;font:500 .7rem var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:99rem;padding:.1rem .55rem}
+.card p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;padding:0;margin:0}
+.tags li{font:400 .75rem var(--f-mono);background:var(--tag);border-radius:.3rem;padding:.2rem .5rem}
+.links{display:flex;flex-wrap:wrap;gap:1rem;margin-top:auto;padding-top:.25rem}
+.links a{font:500 .8rem var(--f-mono);text-decoration:none;color:var(--accent);border-bottom:1px solid transparent}
+.links a:hover{border-bottom-color:var(--accent)}
+.links a.pending{color:var(--muted);border-bottom:1px dashed var(--muted)}
+@media (max-width:42rem){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.skills{display:grid;gap:0;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:11rem minmax(0,1fr);gap:1rem;padding-block:1.1rem;border-bottom:1px solid var(--line);align-items:baseline}
+.row h3{font:500 .85rem var(--f-mono);color:var(--muted);margin:0}
+@media (max-width:40rem){.row{grid-template-columns:minmax(0,1fr);gap:.5rem}}
+
+.certs{display:grid;gap:0;border-top:1px solid var(--line);list-style:none;padding:0;margin:0}
+.cert{display:grid;grid-template-columns:5rem minmax(0,1fr) auto;gap:1rem;padding-block:1.1rem;border-bottom:1px solid var(--line);align-items:baseline}
+.cert .yr{font:400 .85rem var(--f-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.cert .nm{font:700 1.1rem/1.3 var(--f-display);margin:0}
+.cert .by{font:400 .85rem var(--f-mono);color:var(--muted);margin:.15rem 0 0}
+.cert a{font:500 .8rem var(--f-mono);color:var(--accent);text-decoration:none;border-bottom:1px solid transparent}
+.cert a:hover{border-bottom-color:var(--accent)}
+.cert-empty{border:1px dashed var(--muted);border-radius:.6rem;padding:1.25rem;color:var(--muted);font:400 .85rem/1.6 var(--f-mono);margin:0}
+@media (max-width:40rem){.cert{grid-template-columns:minmax(0,1fr);gap:.35rem}}
+
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:2.5rem;align-items:start}
+.contact p{margin:0 0 1.25rem;max-width:30rem}
+.addr{display:flex;flex-direction:column;gap:.6rem;font:400 .9rem var(--f-mono)}
+.addr div{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.addr .k{color:var(--muted);min-width:4.5rem}
+.addr .v{overflow-wrap:anywhere;user-select:all}
+.copy{font:400 .7rem var(--f-mono);background:none;color:var(--accent);border:1px solid var(--line);border-radius:.3rem;padding:.1rem .45rem;cursor:pointer}
+form{display:grid;gap:.9rem;background:var(--surface);border:1px solid var(--line);border-radius:.6rem;padding:1.25rem}
+label{display:grid;gap:.3rem;font:400 .75rem var(--f-mono);color:var(--muted)}
+input,textarea{font:400 .95rem var(--f-body);color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:.4rem;padding:.6rem .75rem;width:100%;min-width:0}
+textarea{min-height:7rem;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+form button{font:500 .85rem var(--f-mono);justify-self:start;background:var(--accent);color:var(--accent-fg);border:0;border-radius:.45rem;padding:.7rem 1.1rem;cursor:pointer}
+#status{font:400 .8rem/1.5 var(--f-mono);color:var(--muted);margin:0;min-height:1.2em}
+@media (max-width:48rem){.contact{grid-template-columns:minmax(0,1fr)}}
+
+footer{border-top:1px solid var(--line);padding-block:1.75rem 2.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;font:400 .78rem var(--f-mono);color:var(--muted)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+
+<header class="bar">
+  <div class="bar-in">
+    <a class="logo" href="#top">vaux<span>.dev</span></a>
+    <nav aria-label="Sections">
+      <a href="#about">about</a><a href="#projects">projects</a><a href="#skills">skills</a><a href="#certifications">certs</a><a href="#contact">contact</a>
+      <button id="theme" type="button" aria-label="Switch between light and dark theme">theme</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <p class="hello">Hi, my name is</p>
+    <h1>Vaux San Pascual</h1>
+    <p class="role">AI/Software Developer building RAG systems &amp; testing complex software</p>
+    <p class="lede">Computer Science student working on applied AI: retrieval-augmented generation, embeddings, and the pipelines behind them. I also spend a lot of time breaking software on purpose so it holds up in production.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View Projects</a>
+      <a class="btn" href="#contact">Contact Me</a>
+      <a class="btn" id="resume" href="#" data-key="resume">Resume</a>
+    </div>
+  </div>
+
+  <section id="about">
+    <p class="label">// about</p>
+    <h2>About</h2>
+    <div class="about">
+      <div>
+        <p>I'm a Computer Science student focused on applied AI, specifically retrieval-augmented generation systems and the unglamorous plumbing that makes them actually useful: scraping, parsing, chunking, embedding, caching.</p>
+        <p>I work across the full stack, from data pipelines and vector databases to frontend interfaces, and I care a lot about software quality. A large part of my coursework and project work has been formal testing: designing test suites, running exploratory and regression passes, and documenting findings.</p>
+        <p>Currently building a RAG-based university assistant as my thesis project.</p>
+      </div>
+      <aside class="now" aria-label="Currently">
+        <span class="c">// currently</span>
+        <dl>
+          <dt>focus</dt><dd>RAG systems</dd>
+          <dt>thesis</dt><dd>MSEUF AI Chatbot</dd>
+          <dt>also</dt><dd>QA &amp; testing</dd>
+          <dt>based</dt><dd>Philippines</dd>
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="label">// projects</p>
+    <h2>Projects</h2>
+    <div class="grid" id="project-grid"></div>
+  </section>
+
+  <section id="skills">
+    <p class="label">// skills</p>
+    <h2>Skills</h2>
+    <div class="skills" id="skill-list"></div>
+  </section>
+
+  <section id="certifications">
+    <p class="label">// certifications</p>
+    <h2>Certifications</h2>
+    <ul class="certs" id="cert-list"></ul>
+  </section>
+
+  <section id="contact">
+    <p class="label">// contact</p>
+    <h2>Contact</h2>
+    <div class="contact">
+      <div>
+        <p>Open to internships, collaborations, and conversations about RAG, testing, or anything in between.</p>
+        <div class="addr">
+          <div><span class="k">email</span><span class="v" id="email-text"></span><button class="copy" type="button" id="copy-email">copy</button></div>
+          <div><span class="k">github</span><a class="v" id="gh" href="#" data-key="github"></a></div>
+          <div><span class="k">linkedin</span><a class="v" id="li" href="#" data-key="linkedin"></a></div>
+        </div>
+      </div>
+      <form id="contact-form" novalidate>
+        <label for="f-name">Name<input id="f-name" name="name" autocomplete="name"></label>
+        <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email"></label>
+        <label for="f-msg">Message<textarea id="f-msg" name="message"></textarea></label>
+        <button type="submit">Prepare message</button>
+        <p id="status" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Vaux San Pascual</span>
+    <span>built with care &middot; vaux.dev</span>
+  </footer>
+</main>
+
+<script>
+/* Edit these. Leave a value empty and its link shows as a dashed placeholder. */
+var SITE = {
+  email: "",
+  github: "",
+  linkedin: "",
+  resume: ""
+};
+var PROJECTS = [
+  {t:"MSEUF RAG-Based AI Chatbot", f:true, d:"Capstone/thesis: an AI assistant for the university built on a RAG architecture, with a full data pipeline that populates its knowledge base from the university website.", tags:["SvelteKit","Qdrant","Redis","Python","BeautifulSoup","pdfplumber"], links:[["GitHub",""],["Demo",""]]},
+  {t:"Library Copilot", f:true, d:"Earlier capstone: the foundational RAG-based assistant that the current thesis work builds on.", tags:["RAG","Python","Vector Search"], links:[["GitHub",""]]},
+  {t:"RAG Stack Experiments", d:"Hands-on work across the retrieval stack: embeddings, vector storage in Postgres, local generation and tool-calling.", tags:["nomic-embed-text","PostgreSQL","pgvector","llama3.1","Ollama"], links:[["GitHub",""]]},
+  {t:"Transformer Architecture Labs", d:"Implemented and debugged encoder-only (BERT), decoder-only (GPT-2), and encoder-decoder (T5) models; explored attention mechanisms and exposure bias.", tags:["BERT","GPT-2","T5","Attention","PyTorch"], links:[["GitHub",""]]},
+  {t:"Time Series Forecasting with PyTorch", d:"Demand forecasting models comparing Dense, RNN, and LSTM architectures on sequential data.", tags:["PyTorch","LSTM","RNN","Forecasting"], links:[["GitHub",""]]},
+  {t:"Software Testing Portfolio (CSSE104)", d:"Structured test suites (SauceDemo login/cart flows), exploratory + regression testing lead on the BugEater group exam project, plus an IEEE-formatted paper on testing methodology.", tags:["Test Design","Exploratory","Regression","IEEE Paper"], links:[["GitHub",""]]},
+  {t:"Arduino Smart Vault", d:"A security/vault system prototype designed, built, and debugged in Tinkercad.", tags:["Arduino","Tinkercad","Embedded"], links:[["GitHub",""]]}
+];
+var SKILLS = [
+  ["Languages",["Python","JavaScript","TypeScript","SQL"]],
+  ["AI / ML",["RAG","Embeddings","Transformers","PyTorch","Ollama","Prompt design"]],
+  ["Backend / Infra",["Qdrant","Redis","PostgreSQL","pgvector","SvelteKit","REST APIs"]],
+  ["Testing / QA",["Black box","Exploratory","Regression","System","Performance","Compatibility"]],
+  ["Tools",["Tinkercad","Chrome extension tooling","Web scraping","Git"]]
+];
+
+/* Add your certifications here, e.g. {name:"Certificate name", issuer:"Issuing organization", year:"2026", url:"https://..."} */
+var CERTS = [];
+
+function el(tag, cls, text){var e=document.createElement(tag); if(cls)e.className=cls; if(text!=null)e.textContent=text; return e;}
+function tagList(arr){var ul=el("ul","tags"); arr.forEach(function(x){ul.appendChild(el("li",null,x));}); return ul;}
+function setLink(a, url, label){
+  if(url){a.href=url; a.target="_blank"; a.rel="noopener"; a.classList.remove("pending"); if(label)a.textContent=label;}
+  else{a.href="#"; a.classList.add("pending"); a.title="Add this link in the SITE settings at the top of the script"; if(label)a.textContent=label; a.addEventListener("click",function(e){e.preventDefault();});}
+}
+
+var grid=document.getElementById("project-grid");
+PROJECTS.forEach(function(p){
+  var c=el("article","card"+(p.f?" featured":""));
+  if(p.f)c.appendChild(el("span","badge","featured"));
+  c.appendChild(el("h3",null,p.t)); c.appendChild(el("p",null,p.d)); c.appendChild(tagList(p.tags));
+  var l=el("div","links");
+  p.links.forEach(function(x){var a=el("a"); setLink(a,x[1],x[0]); l.appendChild(a);});
+  c.appendChild(l); grid.appendChild(c);
+});
+
+var sl=document.getElementById("skill-list");
+SKILLS.forEach(function(s){var r=el("div","row"); r.appendChild(el("h3",null,s[0])); r.appendChild(tagList(s[1])); sl.appendChild(r);});
+
+var cl=document.getElementById("cert-list");
+if(!CERTS.length){
+  var empty=el("li","cert-empty","No certifications listed yet. Add them to the CERTS list at the top of the script.");
+  cl.style.borderTop="0"; cl.appendChild(empty);
+}else{
+  CERTS.forEach(function(c){
+    var li=el("li","cert");
+    li.appendChild(el("span","yr",c.year||""));
+    var mid=el("div"); mid.appendChild(el("p","nm",c.name)); if(c.issuer)mid.appendChild(el("p","by",c.issuer)); li.appendChild(mid);
+    if(c.url){var a=el("a",null,"View credential"); a.href=c.url; a.target="_blank"; a.rel="noopener"; li.appendChild(a);}
+    cl.appendChild(li);
+  });
+}
+
+setLink(document.getElementById("resume"),SITE.resume);
+var gh=document.getElementById("gh"), li=document.getElementById("li");
+setLink(gh,SITE.github,SITE.github?SITE.github.replace(/^https?:\/\//,""):"github.com/your-handle");
+setLink(li,SITE.linkedin,SITE.linkedin?SITE.linkedin.replace(/^https?:\/\//,""):"linkedin.com/in/your-handle");
+var emailText=document.getElementById("email-text");
+emailText.textContent=SITE.email||"hello@your-domain.dev";
+if(!SITE.email)emailText.style.color="var(--muted)";
+
+function copyText(t, done){
+  function fallback(){var r=document.createRange(); r.selectNodeContents(emailText); var s=getSelection(); s.removeAllRanges(); s.addRange(r); done(false);}
+  try{navigator.clipboard.writeText(t).then(function(){done(true);},fallback);}catch(e){fallback();}
+}
+document.getElementById("copy-email").addEventListener("click",function(){
+  var b=this; copyText(emailText.textContent,function(ok){b.textContent=ok?"copied":"selected"; setTimeout(function(){b.textContent="copy";},1600);});
+});
+
+document.getElementById("contact-form").addEventListener("submit",function(e){
+  e.preventDefault();
+  var n=document.getElementById("f-name").value.trim(), em=document.getElementById("f-email").value.trim(), m=document.getElementById("f-msg").value.trim();
+  var st=document.getElementById("status");
+  if(!m){st.textContent="Write a message first."; return;}
+  var body="From: "+(n||"(no name)")+(em?" <"+em+">":"")+"\n\n"+m;
+  copyText(body,function(ok){
+    st.textContent=ok?"Message copied. Paste it into an email to "+emailText.textContent+".":"Copy didn't work here. Select your message and email it to "+emailText.textContent+".";
+  });
+});
+
+(function(){
+  var root=document.documentElement, b=document.getElementById("theme");
+  try{var saved=localStorage.getItem("vaux-theme"); if(saved)root.setAttribute("data-theme",saved);}catch(e){}
+  b.addEventListener("click",function(){
+    var cur=root.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
+    var next=cur==="dark"?"light":"dark"; root.setAttribute("data-theme",next);
+    try{localStorage.setItem("vaux-theme",next);}catch(e){}
+  });
+})();
+</script>
+
+</body></html>
